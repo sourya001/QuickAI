@@ -167,7 +167,7 @@ export const generateImage = async (req, res) => {
 export const removeImageBackground = async (req, res) => {
   try {
     const { userId } = req.auth();
-    const { image } = req.file;
+    const image = req.file;
     const plan = req.plan;
 
     if (plan != "premium") {
@@ -207,7 +207,7 @@ export const removeImageBackground = async (req, res) => {
 export const removeImageObject = async (req, res) => {
   try {
     const { userId } = req.auth();
-    const { image } = req.file;
+    const image  = req.file;
     const plan = req.plan;
     const { object } = req.body;
 
@@ -247,7 +247,6 @@ export const resumeReview = async (req, res) => {
     const { userId } = req.auth();
     const resume = req.file;
     const plan = req.plan;
-    
 
     if (plan != "premium") {
       return res.json({
@@ -257,18 +256,18 @@ export const resumeReview = async (req, res) => {
       });
     }
 
-  if(resume.size > 5*1024*1024){
+    if (resume.size > 5 * 1024 * 1024) {
       return res.json({
         success: false,
         message: "File size exceeds the 5MB limit.",
       });
     }
-  const dataBuffer = fs.readFileSync(resume.path);
-  const pdfData = await pdf(dataBuffer);
+    const dataBuffer = fs.readFileSync(resume.path);
+    const pdfData = await pdf(dataBuffer);
 
-  const prompt = `Reviw the resume and provide feedback on its strengths and weaknesses. Provide suggestions for improvement. Here is the resume content: \n \n ${pdfData.text}`;
-  
-  const response = await AI.chat.completions.create({
+    const prompt = `Reviw the resume and provide feedback on its strengths and weaknesses. Provide suggestions for improvement. Here is the resume content: \n \n ${pdfData.text}`;
+
+    const response = await AI.chat.completions.create({
       model: "gemini-2.0-flash",
       messages: [
         {
@@ -281,8 +280,8 @@ export const resumeReview = async (req, res) => {
     });
 
     const content = response.choices[0].message.content;
-  
-  // updating the data in neon database
+
+    // updating the data in neon database
     await sql`INSERT INTO creations (user_id, prompt, content,type) VALUES (${userId}, ${`Review the uploaded resume`}, ${content}, 'resume-review'
     })`; // table name is creations
 
@@ -298,5 +297,3 @@ export const resumeReview = async (req, res) => {
     });
   }
 };
-
-

@@ -2,16 +2,36 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { dummyCreationData } from "../assets/assets";
 import { Gem, Sparkles } from "lucide-react";
-import { Protect } from "@clerk/clerk-react";
+import { Protect, useAuth } from "@clerk/clerk-react";
 import CreationItem from "../components/CreationItem";
+import axios from "axios";
+axios.defaults.baseURL = import.meta.env.VITE_BASE_URL;
+
 const Dashboard = () => {
   const [creations, setCreations] = useState([]);
+
+  const { getToken } = useAuth();
+  const [loading, setLoading] = useState(true);
   const getDashboardData = async () => {
-    setCreations(dummyCreationData);
+    try {
+      const { data } = await axios.get("/api/user/get-user-creations", {
+        headers: { Authorization: `Bearer ${await getToken()}` },
+      });
+      if (data.success) {
+        setCreations(data.creations);
+      } else {
+        toast.error(data.message || "Failed to fetch creations.");
+      }
+    } catch (error) {
+      toast.error(error.message || "Failed to fetch creations.");
+    }
+    setLoading(false);
   };
+
   useEffect(() => {
     getDashboardData();
   }, []);
+
   return (
     <div className="h-full overflow-y-scroll p-6">
       <div className="flex justify-start gap-4 flex-wrap">
@@ -41,12 +61,18 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-      <div className="space-y-3">
-        <p className="mt-6 mb-4">Recent Creations</p>
-        {creations.map((item) => (
-          <CreationItem key={item.id} item={item} />
-        ))}
-      </div>
+      {loading ? (
+        <div>
+          <div className="animate-spin rounded-full h-11 w-11 border-3 border-purple-500 border-t-transparent"></div>
+        </div>
+      ) : (
+        <div className="space-y-3">
+          <p className="mt-6 mb-4">Recent Creations</p>
+          {creations.map((item) => (
+            <CreationItem k ey={item.id} item={item} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
