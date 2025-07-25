@@ -23,7 +23,10 @@ const Hero = () => {
         >
           Begin Creating Now
         </button>
-        <button className="bg-primary-custom text-primary-custom px-10 py-3 rounded-lg border border-custom hover:scale-102 active:scale-95 transition-all duration-300 cursor-pointer hover:bg-secondary-custom">
+        <button 
+          onClick={() => window.open(import.meta.env.VITE_DEMO_VIDEO_URL, '_blank')}
+          className="bg-primary-custom text-primary-custom px-10 py-3 rounded-lg border border-custom hover:scale-102 active:scale-95 transition-all duration-300 cursor-pointer hover:bg-secondary-custom"
+        >
           Watch Demo
         </button>
       </div>
