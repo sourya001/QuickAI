@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
-import Aitools from "../components/Aitools";
+import AiTools from "../components/AiTools";
 import Testimonial from "../components/Testimonial";
 import Plan from "../components/Plan";
 import Footer from "../components/Footer";
@@ -11,7 +11,7 @@ const Home = () => {
     <>
       <Navbar />
       <Hero />
-      <Aitools />
+      <AiTools />
       <Testimonial />
       <Plan />
       <Footer />
