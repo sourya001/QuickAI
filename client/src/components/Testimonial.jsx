@@ -1,11 +1,11 @@
 export default function Testimonial() {
   return (
     <div className="text-center">
-      <h1 className="text-3xl md:text-4xl font-bold text-gray-800">
+      <h1 className="text-3xl md:text-4xl font-bold text-primary-custom smooth-transition">
         What Our Students Say
       </h1>
-      <p className="text-sm md:text-base text-gray-500 mt-4">
-        Join thousand of successful students who transformed their careers with
+      <p className="text-sm md:text-base text-secondary-custom mt-4 smooth-transition">
+        Join thousands of successful students who transformed their careers with
         us
       </p>
       <div className="flex flex-wrap justify-center gap-5 mt-16 text-left">
@@ -96,10 +96,10 @@ export default function Testimonial() {
               alt="userImage1"
             />
             <div>
-              <h2 className="text-lg text-gray-900 font-medium">
+              <h2 className="text-lg text-primary-custom font-medium smooth-transition">
                 Donald Jackman
               </h2>
-              <p className="text-sm text-gray-500">SWE 1 @ Amazon</p>
+              <p className="text-sm text-secondary-custom smooth-transition">SWE 1 @ Amazon</p>
             </div>
           </div>
         </div>
@@ -191,10 +191,10 @@ export default function Testimonial() {
               alt="userImage2"
             />
             <div>
-              <h2 className="text-lg text-gray-900 font-medium">
+              <h2 className="text-lg text-primary-custom font-medium smooth-transition">
                 Richard Nelson
               </h2>
-              <p className="text-sm text-gray-500">SWE 2 @ Amazon</p>
+              <p className="text-sm text-secondary-custom smooth-transition">SWE 2 @ Amazon</p>
             </div>
           </div>
         </div>
@@ -286,10 +286,10 @@ export default function Testimonial() {
               alt="userImage3"
             />
             <div>
-              <h2 className="text-lg text-gray-900 font-medium">
+              <h2 className="text-lg text-primary-custom font-medium smooth-transition">
                 James Washington
               </h2>
-              <p className="text-sm text-gray-500">SWE 2 @ Google</p>
+              <p className="text-sm text-secondary-custom smooth-transition">SWE 2 @ Google</p>
             </div>
           </div>
         </div>
