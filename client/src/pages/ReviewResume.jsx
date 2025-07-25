@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useAuth } from "@clerk/clerk-react";
 import toast from "react-hot-toast";
-axios.defaults.baseURL = import.meta.env.VITE_BASE_URL;
 import Markdown from "react-markdown";
-import { form } from "react-router-dom";
+
+axios.defaults.baseURL = import.meta.env.VITE_BASE_URL;
 
 const ReviewResume = () => {
   const [input, setInput] = useState("");

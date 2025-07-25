@@ -4,8 +4,7 @@ import axios from "axios";
 import { useAuth } from "@clerk/clerk-react";
 import toast from "react-hot-toast";
 axios.defaults.baseURL = import.meta.env.VITE_BASE_URL;
-import Markdown from "react-markdown";
-import { form } from "react-router-dom";
+
 
 const RemoveObject = () => {
   const [input, setInput] = useState("");
@@ -16,15 +15,27 @@ const RemoveObject = () => {
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
+    
+    if (!input) {
+      toast.error("Please select an image file.");
+      return;
+    }
+    
+    if (!object.trim()) {
+      toast.error("Please describe the object to remove.");
+      return;
+    }
+    
+    if (object.split(" ").length > 1) {
+      toast.error("Please provide a single object to remove.");
+      return;
+    }
+    
     try {
       setLoading(true);
-      if (object.split(" ").length > 1) {
-        return toast.error("Please provide a single object to remove.");
-      }
-
       const formData = new FormData();
       formData.append("image", input);
-      formData.append("object", object);
+      formData.append("object", object.trim());
 
       const { data } = await axios.post(
         "/api/ai/remove-image-object",
@@ -32,18 +43,22 @@ const RemoveObject = () => {
         {
           headers: {
             Authorization: `Bearer ${await getToken()}`,
+            "Content-Type": "multipart/form-data",
           },
         }
       );
       if (data.success) {
         setContent(data.content);
+        toast.success("Object removed successfully!");
       } else {
-        toast.error(data.message || "Failed to generate image.");
+        toast.error(data.message || "Failed to remove object.");
       }
     } catch (error) {
-      toast.error(error.message || "Failed to generate image.");
+      console.error("Error removing object:", error);
+      toast.error(error.response?.data?.message || error.message || "Failed to remove object.");
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   return (

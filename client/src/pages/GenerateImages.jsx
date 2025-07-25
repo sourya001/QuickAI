@@ -27,6 +27,12 @@ const GenerateImages = () => {
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
+    
+    if (!input.trim()) {
+      toast.error("Please enter a description for your image.");
+      return;
+    }
+    
     try {
       setLoading(true);
       const prompt = `Generate an image with the following description: "${input}" in the style of "${selectedStyle}".`;  
@@ -41,13 +47,16 @@ const GenerateImages = () => {
       );
       if (data.success) {
         setContent(data.content);
+        toast.success("Image generated successfully!");
       } else {
         toast.error(data.message || "Failed to generate image.");
       }
     } catch (error) {
-      toast.error(error.message || "Failed to generate image.");
+      console.error("Error generating image:", error);
+      toast.error(error.response?.data?.message || error.message || "Failed to generate image.");
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   return (

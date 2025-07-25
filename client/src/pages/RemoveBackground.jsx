@@ -5,8 +5,7 @@ import axios from "axios";
 import { useAuth } from "@clerk/clerk-react";
 import toast from "react-hot-toast";
 axios.defaults.baseURL = import.meta.env.VITE_BASE_URL;
-import Markdown from "react-markdown";
-import { form } from "react-router-dom";
+
 
 const RemoveBackground = () => {
   const [input, setInput] = useState("");
@@ -15,11 +14,16 @@ const RemoveBackground = () => {
   const [content, setContent] = useState("");
   const onSubmitHandler = async (e) => {
     e.preventDefault();
+    
+    if (!input) {
+      toast.error("Please select an image file.");
+      return;
+    }
+    
     try {
       setLoading(true);
       const formData = new FormData();
       formData.append("image", input);
-      const prompt = `Remove the background from the uploaded image.`;
 
       const { data } = await axios.post(
         "/api/ai/remove-image-background",
@@ -27,18 +31,22 @@ const RemoveBackground = () => {
         {
           headers: {
             Authorization: `Bearer ${await getToken()}`,
+            "Content-Type": "multipart/form-data",
           },
         }
       );
       if (data.success) {
         setContent(data.content);
+        toast.success("Background removed successfully!");
       } else {
-        toast.error(data.message || "Failed to generate image.");
+        toast.error(data.message || "Failed to remove background.");
       }
     } catch (error) {
-      toast.error(error.message || "Failed to generate image.");
+      console.error("Error removing background:", error);
+      toast.error(error.response?.data?.message || error.message || "Failed to remove background.");
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   return (

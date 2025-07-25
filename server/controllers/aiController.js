@@ -134,7 +134,7 @@ export const generateImage = async (req, res) => {
       "https://clipdrop-api.co/text-to-image/v1",
       formData,
       {
-        headers: { "x-api-key": process.env.CLIPDROP_API_KEY, ...form },
+        headers: { "x-api-key": process.env.CLIPDROP_API_KEY, ...formData.getHeaders() },
         responseType: "arraybuffer",
       }
     );
@@ -188,8 +188,7 @@ export const removeImageBackground = async (req, res) => {
     });
 
     // updating the data in neon database
-    await sql`INSERT INTO creations (user_id, prompt, content,type) VALUES (${userId}, 'Remove Background from Image', ${secure_url}, 'image'
-    })`; // table name is creations
+    await sql`INSERT INTO creations (user_id, prompt, content,type) VALUES (${userId}, 'Remove Background from Image', ${secure_url}, 'image')`; // table name is creations
 
     res.json({
       success: true,
@@ -227,12 +226,11 @@ export const removeImageObject = async (req, res) => {
     });
 
     // updating the data in neon database
-    await sql`INSERT INTO creations (user_id, prompt, content,type) VALUES (${userId}, ${`Remove ${object} from Image`}, ${imageUrl}, 'image'
-    })`; // table name is creations
+    await sql`INSERT INTO creations (user_id, prompt, content,type) VALUES (${userId}, ${`Remove ${object} from Image`}, ${imageUrl}, 'image')`; // table name is creations
 
     res.json({
       success: true,
-      content: secure_url,
+      content: imageUrl,
     });
   } catch (error) {
     console.log(error.message);
@@ -282,8 +280,7 @@ export const resumeReview = async (req, res) => {
     const content = response.choices[0].message.content;
 
     // updating the data in neon database
-    await sql`INSERT INTO creations (user_id, prompt, content,type) VALUES (${userId}, ${`Review the uploaded resume`}, ${content}, 'resume-review'
-    })`; // table name is creations
+    await sql`INSERT INTO creations (user_id, prompt, content,type) VALUES (${userId}, ${`Review the uploaded resume`}, ${content}, 'resume-review')`; // table name is creations
 
     res.json({
       success: true,
