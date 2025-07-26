@@ -3,7 +3,7 @@ import React from "react";
 import { useState } from "react";
 import axios from "axios";
 import { useAuth } from "@clerk/clerk-react";
-import toast from "react-hot-toast";
+import customToast from "../utils/toast";
 axios.defaults.baseURL = import.meta.env.VITE_BASE_URL;
 
 
@@ -16,7 +16,7 @@ const RemoveBackground = () => {
     e.preventDefault();
     
     if (!input) {
-      toast.error("Please select an image file.");
+      customToast.error("Please select an image file.");
       return;
     }
     
@@ -37,13 +37,13 @@ const RemoveBackground = () => {
       );
       if (data.success) {
         setContent(data.content);
-        toast.success("Background removed successfully!");
+        customToast.success("Background removed successfully!");
       } else {
-        toast.error(data.message || "Failed to remove background.");
+        customToast.error(data.message || "Failed to remove background.");
       }
     } catch (error) {
       console.error("Error removing background:", error);
-      toast.error(error.response?.data?.message || error.message || "Failed to remove background.");
+      customToast.error(error.response?.data?.message || error.message || "Failed to remove background.");
     } finally {
       setLoading(false);
     }

@@ -1,7 +1,7 @@
 import { Hash, Sparkles } from "lucide-react";
 import React, { useState } from "react";
 import axios from "axios";
-import toast from "react-hot-toast";
+import customToast from "../utils/toast";
 import Markdown from "react-markdown";
 import { useAuth } from "@clerk/clerk-react";
 
@@ -42,10 +42,10 @@ const BlogTitles = () => {
       if (data.success) {
         setContent(data.content);
       } else {
-        toast.error(data.content || "Failed to generate titles.");
+        customToast.error(data.content || "Failed to generate titles.");
       }
     } catch (error) {
-      toast.error(error.message || "Failed to generate titles.");
+      customToast.error(error.message || "Failed to generate titles.");
     }
     setLoading(false);
   };

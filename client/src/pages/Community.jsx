@@ -4,7 +4,7 @@ import { dummyPublishedCreationData } from "../assets/assets";
 import { Heart } from "lucide-react";
 import { useEffect } from "react";
 import axios from "axios";
-import toast from "react-hot-toast";
+import customToast from "../utils/toast";
 axios.defaults.baseURL = import.meta.env.VITE_BASE_URL;
 
 // Community page to display user creations
@@ -23,10 +23,10 @@ const Community = () => {
       if (data.success) {
         setCreations(data.creations);
       } else {
-        toast.error(data.message || "Failed to fetch creations.");
+        customToast.error(data.message || "Failed to fetch creations.");
       }
     } catch (error) {
-      toast.error(error.message || "Failed to fetch creations.");
+      customToast.error(error.message || "Failed to fetch creations.");
     }
     setLoading(false);
   };
@@ -42,13 +42,13 @@ const Community = () => {
       );
 
       if (data.success) {
-        toast.success(data.message || "Creation liked/unliked successfully.");
+        customToast.success(data.message || "Creation liked/unliked successfully.");
         await fetchCreations();
       } else {
-        toast.error(data.message || "Failed to like/unlike creation.");
+        customToast.error(data.message || "Failed to like/unlike creation.");
       }
     } catch (error) {
-      toast.error(error.message || "Failed to like/unlike creation.");
+      customToast.error(error.message || "Failed to like/unlike creation.");
     }
   };
 

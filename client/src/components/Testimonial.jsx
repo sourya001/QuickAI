@@ -1,6 +1,6 @@
 export default function Testimonial() {
   return (
-    <div className="text-center">
+    <div className="text-center mt-32 mb-24">
       <h1 className="text-3xl md:text-4xl font-bold text-primary-custom smooth-transition">
         What Our Students Say
       </h1>

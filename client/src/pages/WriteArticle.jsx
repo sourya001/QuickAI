@@ -4,7 +4,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
 import { useAuth } from "@clerk/clerk-react";
-import toast from "react-hot-toast";
+import customToast from "../utils/toast";
 import Markdown from "react-markdown";
 axios.defaults.baseURL = import.meta.env.VITE_BASE_URL;
 
@@ -46,10 +46,10 @@ const WriteArticle = () => {
       if (data.success) {
         setContent(data.content);
       } else {
-        toast.error(data.content || "Failed to generate article.");
+        customToast.error(data.content || "Failed to generate article.");
       }
     } catch (error) {
-      toast.error(error.message || "Failed to generate article.");
+      customToast.error(error.message || "Failed to generate article.");
     }
     setLoading(false);
   };

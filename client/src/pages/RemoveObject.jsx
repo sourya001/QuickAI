@@ -2,7 +2,7 @@ import { Scissors, Sparkles } from "lucide-react";
 import React, { useState } from "react";
 import axios from "axios";
 import { useAuth } from "@clerk/clerk-react";
-import toast from "react-hot-toast";
+import customToast from "../utils/toast";
 axios.defaults.baseURL = import.meta.env.VITE_BASE_URL;
 
 
@@ -17,17 +17,17 @@ const RemoveObject = () => {
     e.preventDefault();
     
     if (!input) {
-      toast.error("Please select an image file.");
+      customToast.error("Please select an image file.");
       return;
     }
     
     if (!object.trim()) {
-      toast.error("Please describe the object to remove.");
+      customToast.error("Please describe the object to remove.");
       return;
     }
     
     if (object.split(" ").length > 1) {
-      toast.error("Please provide a single object to remove.");
+      customToast.error("Please provide a single object to remove.");
       return;
     }
     
@@ -49,13 +49,13 @@ const RemoveObject = () => {
       );
       if (data.success) {
         setContent(data.content);
-        toast.success("Object removed successfully!");
+        customToast.success("Object removed successfully!");
       } else {
-        toast.error(data.message || "Failed to remove object.");
+        customToast.error(data.message || "Failed to remove object.");
       }
     } catch (error) {
       console.error("Error removing object:", error);
-      toast.error(error.response?.data?.message || error.message || "Failed to remove object.");
+      customToast.error(error.response?.data?.message || error.message || "Failed to remove object.");
     } finally {
       setLoading(false);
     }

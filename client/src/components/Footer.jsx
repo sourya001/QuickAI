@@ -1,9 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import { assets } from "../assets/assets";
 import { useNavigate } from "react-router-dom";
+import customToast from "../utils/toast";
 
 export default function Footer() {
   const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+
+  const handleSubscribe = (e) => {
+    e.preventDefault();
+    
+    if (!email) {
+      customToast.error("Please enter your email address");
+      return;
+    }
+    
+    if (!email.includes("@") || !email.includes(".")) {
+      customToast.error("Please enter a valid email address");
+      return;
+    }
+    
+    // Show success toast
+    customToast.success("You are successfully subscribed!");
+    
+    // Reset the email input
+    setEmail("");
+  };
 
   return (
     <footer className="px-6 md:px-16 lg:px-24 xl:px-32 pt-16 pb-8 w-full text-secondary-custom bg-primary-custom smooth-transition border-t border-custom">
@@ -161,8 +183,14 @@ export default function Footer() {
                   className="border border-custom placeholder-secondary-custom focus:ring-2 ring-primary focus:border-primary outline-none w-full max-w-64 h-10 rounded-lg px-3 bg-primary-custom text-primary-custom smooth-transition"
                   type="email"
                   placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  onKeyPress={(e) => e.key === "Enter" && handleSubscribe(e)}
                 />
-                <button className="bg-primary hover:bg-primary-dark w-full sm:w-24 h-10 text-white rounded-lg transition-colors duration-200 font-medium">
+                <button 
+                  className="bg-primary hover:bg-primary-dark w-full sm:w-24 h-10 text-white rounded-lg transition-colors duration-200 font-medium"
+                  onClick={handleSubscribe}
+                >
                   Subscribe
                 </button>
               </div>

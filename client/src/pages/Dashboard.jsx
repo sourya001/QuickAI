@@ -5,6 +5,7 @@ import { Gem, Sparkles } from "lucide-react";
 import { Protect, useAuth } from "@clerk/clerk-react";
 import CreationItem from "../components/CreationItem";
 import axios from "axios";
+import customToast from "../utils/toast";
 axios.defaults.baseURL = import.meta.env.VITE_BASE_URL;
 
 const Dashboard = () => {
@@ -20,10 +21,10 @@ const Dashboard = () => {
       if (data.success) {
         setCreations(data.creations);
       } else {
-        toast.error(data.message || "Failed to fetch creations.");
+        customToast.error(data.message || "Failed to fetch creations.");
       }
     } catch (error) {
-      toast.error(error.message || "Failed to fetch creations.");
+      customToast.error(error.message || "Failed to fetch creations.");
     }
     setLoading(false);
   };

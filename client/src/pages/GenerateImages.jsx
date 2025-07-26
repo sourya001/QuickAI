@@ -1,7 +1,7 @@
 import { Image, Sparkles, Hash } from "lucide-react";
 import React, { useState } from "react";
 import axios from "axios";
-import toast from "react-hot-toast";
+import customToast from "../utils/toast";
 import { useAuth } from "@clerk/clerk-react";
 
 axios.defaults.baseURL = import.meta.env.VITE_BASE_URL;
@@ -29,7 +29,7 @@ const GenerateImages = () => {
     e.preventDefault();
     
     if (!input.trim()) {
-      toast.error("Please enter a description for your image.");
+      customToast.error("Please enter a description for your image.");
       return;
     }
     
@@ -47,13 +47,13 @@ const GenerateImages = () => {
       );
       if (data.success) {
         setContent(data.content);
-        toast.success("Image generated successfully!");
+        customToast.success("Image generated successfully!");
       } else {
-        toast.error(data.message || "Failed to generate image.");
+        customToast.error(data.message || "Failed to generate image.");
       }
     } catch (error) {
       console.error("Error generating image:", error);
-      toast.error(error.response?.data?.message || error.message || "Failed to generate image.");
+      customToast.error(error.response?.data?.message || error.message || "Failed to generate image.");
     } finally {
       setLoading(false);
     }
