@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 import Community from "./pages/Community.jsx";
+import Reviews from "./pages/Reviews.jsx";
 import Layout from "./pages/Layout";
 import WriteArticle from "./pages/WriteArticle";
 import BlogTitles from "./pages/BlogTitles";
@@ -64,6 +65,7 @@ const AppContent = () => {
       />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/reviews" element={<Reviews />} />
         <Route path="/ai" element={<Layout />}>
           <Route index element={<Dashboard />} />
           <Route path="write-article" element={<WriteArticle />} />

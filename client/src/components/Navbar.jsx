@@ -19,6 +19,29 @@ const Navbar = () => {
         onClick={() => navigate("/")}
       />
 
+      <div className="hidden md:flex items-center gap-8 text-sm font-medium">
+        <button
+          onClick={() => navigate("/")}
+          className="text-secondary-custom hover:text-primary-custom transition-colors smooth-transition"
+        >
+          Home
+        </button>
+        <button
+          onClick={() => navigate("/reviews")}
+          className="text-secondary-custom hover:text-primary-custom transition-colors smooth-transition"
+        >
+          Reviews
+        </button>
+        {user && (
+          <button
+            onClick={() => navigate("/ai")}
+            className="text-secondary-custom hover:text-primary-custom transition-colors smooth-transition"
+          >
+            Dashboard
+          </button>
+        )}
+      </div>
+
       <div className="flex items-center gap-4">
         <DarkModeToggle />
         {user ? (
