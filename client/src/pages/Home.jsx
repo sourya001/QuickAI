@@ -12,7 +12,15 @@ const Home = () => {
       <Navbar />
       <Hero />
       <AiTools />
+      
+      {/* Separator between AI Tools and Plan */}
+      <div className="w-full h-px bg-gradient-to-r from-transparent via-secondary-custom/30 to-transparent dark:via-gray-600/50"></div>
+      
       <Plan />
+      
+      {/* Separator between Plan and Testimonials */}
+      <div className="w-full h-px bg-gradient-to-r from-transparent via-secondary-custom/30 to-transparent dark:via-gray-600/50"></div>
+      
       <Testimonial />
       <Footer />
     </>

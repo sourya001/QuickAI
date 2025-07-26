@@ -22,13 +22,16 @@ const Navbar = () => {
   
   return (
     <>
-      <div className="fixed z-50 w-full nav-bg-custom backdrop-blur-2xl flex justify-between items-center py-4 px-4 sm:px-20 border-b border-custom smooth-transition shadow-lg">
-        <img
-          src={assets.logo}
-          alt="logo"
-          className="w-32 sm:w-44 cursor-pointer transition-transform duration-200 hover:scale-105"
-          onClick={() => navigate("/")}
-        />
+      <div className="fixed z-50 w-full nav-bg-custom backdrop-blur-2xl flex justify-between items-center py-2 px-4 sm:px-20 border-b border-custom smooth-transition shadow-lg">
+        <div className="flex items-center gap-4">
+          <img
+            src={assets.logo}
+            alt="logo"
+            className="w-32 sm:w-44 cursor-pointer transition-transform duration-200 hover:scale-105"
+            onClick={() => navigate("/")}
+          />
+          <DarkModeToggle />
+        </div>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-2 text-sm font-medium">
@@ -69,7 +72,6 @@ const Navbar = () => {
             <div className="absolute inset-0 bg-gradient-to-r from-primary-custom/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
           </button>
           
-          <DarkModeToggle />
           {user ? (
             <div className="transition-transform duration-200 hover:scale-105">
               <UserButton />
