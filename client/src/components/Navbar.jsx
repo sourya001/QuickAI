@@ -34,17 +34,17 @@ const Navbar = () => {
         </div>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-2 text-sm font-medium">
+        <div className="hidden md:flex items-center gap-2 text-sm font-medium -ml-32">
           <button
             onClick={() => navigate("/")}
-            className="relative px-4 py-2 text-secondary-custom hover:text-primary-custom transition-colors duration-300 rounded-lg hover:bg-secondary-custom/10 group border border-secondary-custom/20 hover:border-primary-custom/40 dark:border-gray-600 dark:hover:border-primary-custom/60"
+            className="relative px-4 py-2 text-secondary-custom hover:text-primary-custom transition-colors duration-300 rounded-lg hover:bg-secondary-custom/10 group border border-secondary-custom/20 hover:border-primary-custom/40 dark:border-gray-600 dark:hover:border-primary-custom/60 cursor-pointer"
           >
             <span className="relative z-10">Home</span>
             <div className="absolute inset-0 bg-gradient-to-r from-primary-custom/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
           </button>
           <button
             onClick={() => navigate("/reviews")}
-            className="relative px-4 py-2 text-secondary-custom hover:text-primary-custom transition-colors duration-300 rounded-lg hover:bg-secondary-custom/10 group border border-secondary-custom/20 hover:border-primary-custom/40 dark:border-gray-600 dark:hover:border-primary-custom/60"
+            className="relative px-4 py-2 text-secondary-custom hover:text-primary-custom transition-colors duration-300 rounded-lg hover:bg-secondary-custom/10 group border border-secondary-custom/20 hover:border-primary-custom/40 dark:border-gray-600 dark:hover:border-primary-custom/60 cursor-pointer"
           >
             <span className="relative z-10">Reviews</span>
             <div className="absolute inset-0 bg-gradient-to-r from-primary-custom/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
