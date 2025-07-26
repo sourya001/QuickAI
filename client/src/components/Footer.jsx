@@ -16,9 +16,9 @@ export default function Footer() {
             onClick={() => navigate("/")}
           />
           <p className="mt-6 text-sm text-secondary-custom">
-            Elevate your content creation with our premium AI tools. Write articles,
-            generate images, remove backgrounds, and streamline your workflow with
-            the power of artificial intelligence.
+            Elevate your content creation with our premium AI tools. Write
+            articles, generate images, remove backgrounds, and streamline your
+            workflow with the power of artificial intelligence.
           </p>
           <p className="mt-4 text-xs text-secondary-custom">
             Trusted by thousands worldwide for professional content creation.
@@ -29,45 +29,60 @@ export default function Footer() {
             <h2 className="font-semibold mb-5 text-primary-custom">AI Tools</h2>
             <ul className="text-sm space-y-3">
               <li>
-                <a 
-                  href="#" 
-                  onClick={(e) => { e.preventDefault(); navigate("/ai/write-article"); }}
+                <a
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigate("/ai/write-article");
+                  }}
                   className="text-secondary-custom hover:text-primary transition-colors duration-200 cursor-pointer"
                 >
                   AI Article Writer
                 </a>
               </li>
               <li>
-                <a 
-                  href="#" 
-                  onClick={(e) => { e.preventDefault(); navigate("/ai/blog-titles"); }}
+                <a
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigate("/ai/blog-titles");
+                  }}
                   className="text-secondary-custom hover:text-primary transition-colors duration-200 cursor-pointer"
                 >
                   Blog Title Generator
                 </a>
               </li>
               <li>
-                <a 
-                  href="#" 
-                  onClick={(e) => { e.preventDefault(); navigate("/ai/generate-images"); }}
+                <a
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigate("/ai/generate-images");
+                  }}
                   className="text-secondary-custom hover:text-primary transition-colors duration-200 cursor-pointer"
                 >
                   AI Image Generation
                 </a>
               </li>
               <li>
-                <a 
-                  href="#" 
-                  onClick={(e) => { e.preventDefault(); navigate("/ai/remove-background"); }}
+                <a
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigate("/ai/remove-background");
+                  }}
                   className="text-secondary-custom hover:text-primary transition-colors duration-200 cursor-pointer"
                 >
                   Background Removal
                 </a>
               </li>
               <li>
-                <a 
-                  href="#" 
-                  onClick={(e) => { e.preventDefault(); navigate("/ai/remove-object"); }}
+                <a
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigate("/ai/remove-object");
+                  }}
                   className="text-secondary-custom hover:text-primary transition-colors duration-200 cursor-pointer"
                 >
                   Object Removal
@@ -79,39 +94,54 @@ export default function Footer() {
             <h2 className="font-semibold mb-5 text-primary-custom">Company</h2>
             <ul className="text-sm space-y-3">
               <li>
-                <a 
-                  href="#" 
-                  onClick={(e) => { e.preventDefault(); navigate("/"); }}
+                <a
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigate("/");
+                  }}
                   className="text-secondary-custom hover:text-primary transition-colors duration-200 cursor-pointer"
                 >
                   Home
                 </a>
               </li>
               <li>
-                <a 
-                  href="#" 
-                  onClick={(e) => { e.preventDefault(); navigate("/community"); }}
+                <a
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigate("/community");
+                  }}
                   className="text-secondary-custom hover:text-primary transition-colors duration-200 cursor-pointer"
                 >
                   Community
                 </a>
               </li>
               <li>
-                <a 
-                  href="#" 
-                  onClick={(e) => { e.preventDefault(); navigate("/dashboard"); }}
+                <a
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigate("/dashboard");
+                  }}
                   className="text-secondary-custom hover:text-primary transition-colors duration-200 cursor-pointer"
                 >
                   Dashboard
                 </a>
               </li>
               <li>
-                <a href="#" className="text-secondary-custom hover:text-primary transition-colors duration-200">
+                <a
+                  href="#"
+                  className="text-secondary-custom hover:text-primary transition-colors duration-200"
+                >
                   Privacy Policy
                 </a>
               </li>
               <li>
-                <a href="#" className="text-secondary-custom hover:text-primary transition-colors duration-200">
+                <a
+                  href="#"
+                  className="text-secondary-custom hover:text-primary transition-colors duration-200"
+                >
                   Terms of Service
                 </a>
               </li>
@@ -123,7 +153,8 @@ export default function Footer() {
             </h2>
             <div className="text-sm space-y-2">
               <p className="text-secondary-custom">
-                Get the latest updates on new AI tools and features delivered to your inbox.
+                Get the latest updates on new AI tools and features delivered to
+                your inbox.
               </p>
               <div className="flex flex-col sm:flex-row items-center gap-2 pt-4">
                 <input
@@ -144,13 +175,22 @@ export default function Footer() {
           © 2025 QuickAI. All rights reserved.
         </p>
         <div className="flex items-center gap-6 text-xs md:text-sm">
-          <a href="#" className="text-secondary-custom hover:text-primary transition-colors duration-200">
+          <a
+            href="#"
+            className="text-secondary-custom hover:text-primary transition-colors duration-200"
+          >
             Privacy
           </a>
-          <a href="#" className="text-secondary-custom hover:text-primary transition-colors duration-200">
+          <a
+            href="#"
+            className="text-secondary-custom hover:text-primary transition-colors duration-200"
+          >
             Terms
           </a>
-          <a href="#" className="text-secondary-custom hover:text-primary transition-colors duration-200">
+          <a
+            href="#"
+            className="text-secondary-custom hover:text-primary transition-colors duration-200"
+          >
             Support
           </a>
         </div>
