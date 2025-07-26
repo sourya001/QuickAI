@@ -64,30 +64,31 @@ const Sidebar = ({ sidebar, setSidebar }) => {
           ))}
         </div>
       </div>
-      <div className="w-full border-t border-custom p-4 px-7 flex items-center justify-between smooth-transition"></div>
-      <div
-        onClick={openUserProfile}
-        className="flex gap-2 items-center cursor-pointer hover:bg-secondary-custom p-2 rounded transition-colors duration-200"
-      >
-        <img
-          src={user.imageUrl}
-          alt="User Avatar"
-          className="w-8 rounded-full"
-        />
-        <div>
-          <h1 className="text-sm font-medium text-primary-custom">{user.fullName}</h1>
-          <p className="text-xs text-secondary-custom">
-            <Protect plan="premium" fallback="Free">
-              Premium
-            </Protect>
-            Plan
-          </p>
+      <div className="w-full border-t border-custom p-4 px-7 flex items-center justify-between smooth-transition">
+        <div
+          onClick={openUserProfile}
+          className="flex gap-2 items-center cursor-pointer hover:bg-secondary-custom p-2 rounded transition-colors duration-200"
+        >
+          <img
+            src={user.imageUrl}
+            alt="User Avatar"
+            className="w-8 rounded-full"
+          />
+          <div>
+            <h1 className="text-sm font-medium text-primary-custom">{user.fullName}</h1>
+            <p className="text-xs text-secondary-custom">
+              <Protect plan="premium" fallback="Free">
+                Premium
+              </Protect>
+              Plan
+            </p>
+          </div>
         </div>
+        <LogOut
+          onClick={signOut}
+          className="w-4.5 text-secondary-custom hover:text-red-500 transition cursor-pointer"
+        />
       </div>
-      <LogOut
-        onClick={signOut}
-        className="w-4.5 text-secondary-custom hover:text-red-500 transition cursor-pointer mb-4"
-      />
     </div>
   );
 };
