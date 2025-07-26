@@ -1,10 +1,13 @@
 import React from "react";
 import ReviewForm from "../components/ReviewForm";
 import Testimonial from "../components/Testimonial";
+import Navbar from "../components/Navbar";
 
 export default function Reviews() {
   return (
-    <div className="min-h-screen bg-tertiary-custom smooth-transition">
+    <>
+      <Navbar />
+      <div className="min-h-screen bg-tertiary-custom smooth-transition pt-20">
       <div className="container mx-auto px-4 py-12">
         {/* Header */}
         <div className="text-center mb-12">
@@ -25,5 +28,6 @@ export default function Reviews() {
         <Testimonial />
       </div>
     </div>
+    </>
   );
 }
