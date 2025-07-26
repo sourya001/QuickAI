@@ -40,7 +40,7 @@ export const generateArticle = async (req, res) => {
     });
 
     const content = response.choices[0].message.content;
-    await sql`INSERT INTO creations (user_id, prompt, content,type) VALUES (${userId}, ${prompt}, ${content}, 'article')`; // table name is creations
+    await sql`INSERT INTO creations (user_id, prompt, content, type, likes) VALUES (${userId}, ${prompt}, ${content}, 'article', '{}'::text[])`; // table name is creations
 
     if (plan !== "premium") {
       await clerkClient.users.updateUserMetadata(userId, {
@@ -91,7 +91,7 @@ export const generateBlogTitle = async (req, res) => {
 
     const content = response.choices[0].message.content;
     // updating the data in neon database
-    await sql`INSERT INTO creations (user_id, prompt, content,type) VALUES (${userId}, ${prompt}, ${content}, 'blog-title')`; // table name is creations
+    await sql`INSERT INTO creations (user_id, prompt, content, type, likes) VALUES (${userId}, ${prompt}, ${content}, 'blog-title', '{}'::text[])`; // table name is creations
 
     if (plan !== "premium") {
       await clerkClient.users.updateUserMetadata(userId, {
@@ -147,9 +147,9 @@ export const generateImage = async (req, res) => {
     const { secure_url } = await cloudinary.uploader.upload(base64Image);
 
     // updating the data in neon database
-    await sql`INSERT INTO creations (user_id, prompt, content,type,publish) VALUES (${userId}, ${prompt}, ${secure_url}, 'image', ${
+    await sql`INSERT INTO creations (user_id, prompt, content, type, publish, likes) VALUES (${userId}, ${prompt}, ${secure_url}, 'image', ${
       publish ?? false
-    })`; // table name is creations
+    }, '{}'::text[])`; // table name is creations
 
     res.json({
       success: true,
