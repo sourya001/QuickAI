@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
+import PageTransition from "./components/PageTransition";
 import Home from "./pages/Home.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 import Community from "./pages/Community.jsx";
@@ -17,6 +19,12 @@ import { DarkModeProvider, useDarkMode } from "./contexts/DarkModeContext";
 
 const AppContent = () => {
   const { isDarkMode, isLoading } = useDarkMode();
+  const location = useLocation();
+  
+  // Scroll to top on route change
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [location.pathname]);
   
   if (isLoading) {
     return (
@@ -63,20 +71,92 @@ const AppContent = () => {
           },
         }}
       />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/reviews" element={<Reviews />} />
-        <Route path="/ai" element={<Layout />}>
-          <Route index element={<Dashboard />} />
-          <Route path="write-article" element={<WriteArticle />} />
-          <Route path="blog-titles" element={<BlogTitles />} />
-          <Route path="generate-images" element={<GenerateImages />} />
-          <Route path="remove-background" element={<RemoveBackground />} />
-          <Route path="remove-object" element={<RemoveObject />} />
-          <Route path="review-resume" element={<ReviewResume />} />
-          <Route path="community" element={<Community />} />
-        </Route>
-      </Routes>
+      <AnimatePresence mode="wait">
+        <Routes location={location} key={location.pathname}>
+          <Route 
+            path="/" 
+            element={
+              <PageTransition>
+                <Home />
+              </PageTransition>
+            } 
+          />
+          <Route 
+            path="/reviews" 
+            element={
+              <PageTransition>
+                <Reviews />
+              </PageTransition>
+            } 
+          />
+          <Route path="/ai" element={<Layout />}>
+            <Route 
+              index 
+              element={
+                <PageTransition>
+                  <Dashboard />
+                </PageTransition>
+              } 
+            />
+            <Route 
+              path="write-article" 
+              element={
+                <PageTransition>
+                  <WriteArticle />
+                </PageTransition>
+              } 
+            />
+            <Route 
+              path="blog-titles" 
+              element={
+                <PageTransition>
+                  <BlogTitles />
+                </PageTransition>
+              } 
+            />
+            <Route 
+              path="generate-images" 
+              element={
+                <PageTransition>
+                  <GenerateImages />
+                </PageTransition>
+              } 
+            />
+            <Route 
+              path="remove-background" 
+              element={
+                <PageTransition>
+                  <RemoveBackground />
+                </PageTransition>
+              } 
+            />
+            <Route 
+              path="remove-object" 
+              element={
+                <PageTransition>
+                  <RemoveObject />
+                </PageTransition>
+              } 
+            />
+            <Route 
+              path="review-resume" 
+              element={
+                <PageTransition>
+                  <ReviewResume />
+                </PageTransition>
+              } 
+            />
+            <Route 
+              path="community" 
+              element={
+                <PageTransition>
+                  <Community />
+                </PageTransition>
+              } 
+            />
+          </Route>
+        </Routes>
+      </AnimatePresence>
     </div>
   );
 };
