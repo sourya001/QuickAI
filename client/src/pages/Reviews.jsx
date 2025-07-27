@@ -25,7 +25,7 @@ export default function Reviews() {
         </div>
 
         {/* Testimonials Section */}
-        <Testimonial />
+        <Testimonial showWriteReviewButton={false} />
       </div>
     </div>
     </>

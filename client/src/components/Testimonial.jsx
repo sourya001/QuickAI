@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useUser } from "@clerk/clerk-react";
 import axios from "axios";
 import customToast from "../utils/toast";
 
@@ -48,7 +50,7 @@ const TestimonialCard = ({ testimonial }) => {
   };
 
   return (
-    <div className="w-80 h-80 flex flex-col items-start border border-gray-200/50 dark:border-gray-700/50 p-6 rounded-xl bg-white dark:bg-gray-800/80 backdrop-blur-sm shadow-lg hover:shadow-xl dark:shadow-gray-900/20 transition-all duration-300 hover:-translate-y-1 group">
+    <div className="w-full h-80 flex flex-col items-start border border-gray-200/50 dark:border-gray-700/50 p-6 rounded-xl bg-white dark:bg-gray-800/80 backdrop-blur-sm shadow-lg hover:shadow-xl dark:shadow-gray-900/20 transition-all duration-300 hover:-translate-y-1 group mx-auto max-w-sm">
       <div className="relative">
         <svg
           width="44"
@@ -97,17 +99,30 @@ const TestimonialCard = ({ testimonial }) => {
   );
 };
 
-export default function Testimonial() {
+export default function Testimonial({ showWriteReviewButton = true }) {
+  const navigate = useNavigate();
+  const { user } = useUser();
   const [testimonials, setTestimonials] = useState([]);
   const [displayedTestimonials, setDisplayedTestimonials] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1024);
+
+  // Track window width for responsive behavior
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     fetchTestimonials();
   }, []);
 
-  // Function to get 3 random testimonials
-  const getRandomTestimonials = (testimonialsArray, count = 3) => {
+  // Function to get random testimonials based on screen size
+  const getRandomTestimonials = (testimonialsArray, count) => {
     if (testimonialsArray.length <= count) {
       return testimonialsArray;
     }
@@ -116,11 +131,32 @@ export default function Testimonial() {
     return shuffled.slice(0, count);
   };
 
+  // Determine how many testimonials to show based on screen size
+  const getTestimonialCount = () => {
+    return windowWidth < 768 ? 1 : 3; // Show 1 on mobile, 3 on desktop
+  };
+
   useEffect(() => {
     if (testimonials.length > 0) {
-      setDisplayedTestimonials(getRandomTestimonials(testimonials));
+      const count = getTestimonialCount();
+      setDisplayedTestimonials(getRandomTestimonials(testimonials, count));
     }
-  }, [testimonials]);
+  }, [testimonials, windowWidth]);
+
+  // Handle "Show More Reviews" button click
+  const handleShowMore = () => {
+    const count = getTestimonialCount();
+    setDisplayedTestimonials(getRandomTestimonials(testimonials, count));
+  };
+
+  // Handle "Write a Review" button click with authentication check
+  const handleWriteReview = () => {
+    if (!user) {
+      customToast.error("Please sign in first to write a review");
+      return;
+    }
+    navigate("/reviews");
+  };
 
   const fetchTestimonials = async () => {
     try {
@@ -170,8 +206,8 @@ export default function Testimonial() {
         <div className="flex flex-wrap justify-center gap-6 mt-16 text-left">
           {displayedTestimonials.map((testimonial, index) => (
             <div 
-              key={testimonial.id} 
-              className="animate-fade-in"
+              key={`${testimonial.id}-${index}`} 
+              className="animate-fade-in w-full max-w-sm md:w-80"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <TestimonialCard testimonial={testimonial} />
@@ -180,16 +216,25 @@ export default function Testimonial() {
         </div>
       )}
       
-      {testimonials.length > 3 && (
-        <div className="mt-12">
+      <div className="mt-12 flex flex-col sm:flex-row gap-4 justify-center items-center">
+        {testimonials.length > getTestimonialCount() && (
           <button
-            onClick={() => setDisplayedTestimonials(getRandomTestimonials(testimonials))}
+            onClick={handleShowMore}
             className="px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-medium rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 dark:from-blue-600 dark:to-blue-700 dark:hover:from-blue-700 dark:hover:to-blue-800"
           >
             Show More Reviews
           </button>
-        </div>
-      )}
+        )}
+        
+        {showWriteReviewButton && (
+          <button
+            onClick={handleWriteReview}
+            className="px-6 py-3 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-medium rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 dark:from-green-600 dark:to-green-700 dark:hover:from-green-700 dark:hover:to-green-800"
+          >
+            Write a Review
+          </button>
+        )}
+      </div>
     </div>
   );
 }

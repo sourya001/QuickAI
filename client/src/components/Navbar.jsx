@@ -79,12 +79,13 @@ const Navbar = () => {
           ) : (
             <button
               onClick={openSignIn}
-              className="relative flex items-center gap-2 rounded-full text-sm font-medium cursor-pointer bg-gradient-to-r from-primary to-primary-dark text-white px-4 sm:px-6 py-2.5 hover:from-primary-dark hover:to-primary transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 overflow-hidden group"
+              className="relative flex items-center gap-2 rounded-full text-sm font-medium cursor-pointer bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-4 sm:px-6 py-2.5 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 overflow-hidden group"
+              style={{ color: 'white !important' }}
             >
               <div className="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
-              <span className="hidden sm:inline relative z-10">Get Started</span>
-              <span className="sm:hidden relative z-10">Sign In</span>
-              <ArrowRight className="w-4 h-4 relative z-10 transition-transform duration-300 group-hover:translate-x-1" />
+              <span className="hidden sm:inline relative z-10 font-medium" style={{ color: 'white !important' }}>Get Started</span>
+              <span className="sm:hidden relative z-10 font-medium" style={{ color: 'white !important' }}>Sign In</span>
+              <ArrowRight className="w-4 h-4 relative z-10 transition-transform duration-300 group-hover:translate-x-1" style={{ color: 'white !important' }} />
             </button>
           )}
         </div>
