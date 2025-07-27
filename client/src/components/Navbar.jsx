@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { assets } from "../assets/assets";
 import { useNavigate } from "react-router-dom";
-import { ArrowRight, Menu, X } from "lucide-react";
+import { ArrowRight, Menu, X, Home, Star } from "lucide-react";
 import { useClerk, UserButton, useUser } from "@clerk/clerk-react";
 import DarkModeToggle from "./DarkModeToggle";
 
@@ -39,14 +39,20 @@ const Navbar = () => {
             onClick={() => navigate("/")}
             className="relative px-4 py-2 text-secondary-custom hover:text-primary-custom transition-colors duration-300 rounded-lg hover:bg-secondary-custom/10 group border border-secondary-custom/20 hover:border-primary-custom/40 dark:border-gray-600 dark:hover:border-primary-custom/60 cursor-pointer"
           >
-            <span className="relative z-10">Home</span>
+            <span className="relative z-10 flex items-center gap-2">
+              <Home className="w-4 h-4" />
+              Home
+            </span>
             <div className="absolute inset-0 bg-gradient-to-r from-primary-custom/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
           </button>
           <button
             onClick={() => navigate("/reviews")}
             className="relative px-4 py-2 text-secondary-custom hover:text-primary-custom transition-colors duration-300 rounded-lg hover:bg-secondary-custom/10 group border border-secondary-custom/20 hover:border-primary-custom/40 dark:border-gray-600 dark:hover:border-primary-custom/60 cursor-pointer"
           >
-            <span className="relative z-10">Reviews</span>
+            <span className="relative z-10 flex items-center gap-2">
+              <Star className="w-4 h-4" />
+              Reviews
+            </span>
             <div className="absolute inset-0 bg-gradient-to-r from-primary-custom/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
           </button>
         </div>
@@ -117,7 +123,10 @@ const Navbar = () => {
                 className="group relative text-left text-lg font-medium text-secondary-custom hover:text-primary-custom transition-colors duration-300 py-4 px-4 rounded-xl hover:bg-secondary-custom/10 border border-secondary-custom/20 hover:border-primary-custom/40 dark:border-gray-600 dark:hover:border-primary-custom/60"
               >
                 <div className="flex items-center justify-between">
-                  <span className="relative z-10">Home</span>
+                  <span className="relative z-10 flex items-center gap-3">
+                    <Home className="w-5 h-5" />
+                    Home
+                  </span>
                   <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300 ease-out" />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-r from-primary-custom/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></div>
@@ -127,7 +136,10 @@ const Navbar = () => {
                 className="group relative text-left text-lg font-medium text-secondary-custom hover:text-primary-custom transition-colors duration-300 py-4 px-4 rounded-xl hover:bg-secondary-custom/10 border border-secondary-custom/20 hover:border-primary-custom/40 dark:border-gray-600 dark:hover:border-primary-custom/60"
               >
                 <div className="flex items-center justify-between">
-                  <span className="relative z-10">Reviews</span>
+                  <span className="relative z-10 flex items-center gap-3">
+                    <Star className="w-5 h-5" />
+                    Reviews
+                  </span>
                   <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300 ease-out" />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-r from-primary-custom/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></div>
