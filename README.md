@@ -214,16 +214,6 @@ We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 💬 Support
-
-- **Documentation**: [Wiki](https://github.com/sourya001/Ai_Task/wiki)
-- **Issues**: [GitHub Issues](https://github.com/sourya001/Ai_Task/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/sourya001/Ai_Task/discussions)
-- **Email**: support@quickai.com
 
 ## 🙏 Acknowledgments
 
