@@ -48,7 +48,7 @@ const TestimonialCard = ({ testimonial }) => {
   };
 
   return (
-    <div className="w-80 flex flex-col items-start border border-gray-500/30 p-5 rounded-lg bg-white dark:bg-gray-800 smooth-transition">
+    <div className="w-80 flex flex-col items-start border-2 border-gray-200 dark:border-gray-700/50 p-5 rounded-lg !bg-white dark:!bg-gray-800 shadow-lg shadow-gray-300/50 dark:shadow-gray-900/20 smooth-transition">
       <svg
         width="44"
         height="40"
@@ -68,7 +68,7 @@ const TestimonialCard = ({ testimonial }) => {
         ))}
       </div>
       
-      <p className="text-sm mt-3 text-gray-600 dark:text-gray-300 leading-relaxed">
+      <p className="text-sm mt-3 text-gray-800 dark:text-gray-300 leading-relaxed">
         {review_text}
       </p>
       
@@ -77,10 +77,10 @@ const TestimonialCard = ({ testimonial }) => {
           {user_name.charAt(0).toUpperCase()}
         </div>
         <div>
-          <h2 className="text-lg text-primary-custom font-medium smooth-transition">
+          <h2 className="text-lg text-gray-900 dark:text-primary-custom font-medium smooth-transition">
             {user_name}
           </h2>
-          <p className="text-sm text-secondary-custom smooth-transition">
+          <p className="text-sm text-gray-600 dark:text-secondary-custom smooth-transition">
             {formatDate(created_at)}
           </p>
         </div>

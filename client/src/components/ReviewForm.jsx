@@ -36,7 +36,9 @@ const StarRating = ({ rating, setRating, readonly = false }) => {
           onMouseEnter={() => handleStarHover(star)}
           onMouseLeave={handleStarLeave}
           disabled={readonly}
-          className={`transition-all duration-200 ${readonly ? 'cursor-default' : 'cursor-pointer hover:scale-110'}`}
+          className={`transition-all duration-200 ${
+            readonly ? "cursor-default" : "cursor-pointer hover:scale-110"
+          }`}
         >
           <svg
             width="24"
@@ -47,11 +49,7 @@ const StarRating = ({ rating, setRating, readonly = false }) => {
           >
             <path
               d="M7.524.464a.5.5 0 0 1 .952 0l1.432 4.41a.5.5 0 0 0 .476.345h4.637a.5.5 0 0 1 .294.904L11.563 8.85a.5.5 0 0 0-.181.559l1.433 4.41a.5.5 0 0 1-.77.559L8.294 11.65a.5.5 0 0 0-.588 0l-3.751 2.726a.5.5 0 0 1-.77-.56l1.433-4.41a.5.5 0 0 0-.181-.558L.685 6.123A.5.5 0 0 1 .98 5.22h4.637a.5.5 0 0 0 .476-.346z"
-              fill={
-                star <= (hoverRating || rating)
-                  ? "#FF532E"
-                  : "#D1D5DB"
-              }
+              fill={star <= (hoverRating || rating) ? "#FF532E" : "#D1D5DB"}
             />
           </svg>
         </button>
@@ -82,7 +80,7 @@ export default function ReviewForm() {
       const response = await axios.get("/api/testimonials/user", {
         headers: { Authorization: `Bearer ${await getToken()}` },
       });
-      
+
       if (response.data.success) {
         setExistingReview(response.data.testimonial);
         setFormData({
@@ -101,19 +99,19 @@ export default function ReviewForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!formData.reviewText.trim()) {
       customToast.error("Please write a review");
       return;
     }
-    
+
     if (formData.rating === 0) {
       customToast.error("Please select a rating");
       return;
     }
 
     setLoading(true);
-    
+
     try {
       let response;
       if (existingReview) {
@@ -131,12 +129,18 @@ export default function ReviewForm() {
         if (!existingReview) {
           setExistingReview({ ...formData, is_approved: false });
         } else {
-          setExistingReview({ ...existingReview, ...formData, is_approved: false });
+          setExistingReview({
+            ...existingReview,
+            ...formData,
+            is_approved: false,
+          });
         }
         setIsEditing(false);
       }
     } catch (error) {
-      customToast.error(error.response?.data?.message || "Failed to submit review");
+      customToast.error(
+        error.response?.data?.message || "Failed to submit review"
+      );
     } finally {
       setLoading(false);
     }
@@ -148,7 +152,7 @@ export default function ReviewForm() {
     }
 
     setLoading(true);
-    
+
     try {
       const response = await axios.delete("/api/testimonials/delete", {
         headers: { Authorization: `Bearer ${await getToken()}` },
@@ -161,7 +165,9 @@ export default function ReviewForm() {
         setIsEditing(false);
       }
     } catch (error) {
-      customToast.error(error.response?.data?.message || "Failed to delete review");
+      customToast.error(
+        error.response?.data?.message || "Failed to delete review"
+      );
     } finally {
       setLoading(false);
     }
@@ -190,7 +196,8 @@ export default function ReviewForm() {
           Share Your Experience
         </h2>
         <p className="text-secondary-custom smooth-transition">
-          Please sign in to write a review and share your experience with our platform.
+          Please sign in to write a review and share your experience with our
+          platform.
         </p>
       </div>
     );
@@ -220,7 +227,7 @@ export default function ReviewForm() {
             </label>
             <StarRating rating={existingReview.rating} readonly={true} />
           </div>
-          
+
           <div>
             <label className="block text-sm font-medium text-secondary-custom mb-2 smooth-transition">
               Your Review
@@ -231,12 +238,14 @@ export default function ReviewForm() {
           </div>
 
           <div className="flex items-center gap-2">
-            <span className={`px-3 py-1 rounded-full text-sm font-medium ${
-              existingReview.is_approved 
-                ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' 
-                : 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200'
-            }`}>
-              {existingReview.is_approved ? 'Approved' : 'Pending Approval'}
+            <span
+              className={`px-3 py-1 rounded-full text-sm font-medium ${
+                existingReview.is_approved
+                  ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
+                  : "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200"
+              }`}
+            >
+              {existingReview.is_approved ? "Approved" : "Pending Approval"}
             </span>
           </div>
 
@@ -262,9 +271,9 @@ export default function ReviewForm() {
             <label className="block text-sm font-medium text-secondary-custom mb-2 smooth-transition">
               Rating *
             </label>
-            <StarRating 
-              rating={formData.rating} 
-              setRating={(rating) => setFormData({ ...formData, rating })} 
+            <StarRating
+              rating={formData.rating}
+              setRating={(rating) => setFormData({ ...formData, rating })}
             />
           </div>
 
@@ -274,7 +283,9 @@ export default function ReviewForm() {
             </label>
             <textarea
               value={formData.reviewText}
-              onChange={(e) => setFormData({ ...formData, reviewText: e.target.value })}
+              onChange={(e) =>
+                setFormData({ ...formData, reviewText: e.target.value })
+              }
               placeholder="Share your experience with our platform..."
               rows={6}
               className="w-full p-4 border border-custom rounded-lg bg-tertiary-custom text-primary-custom placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent smooth-transition resize-none"
@@ -291,12 +302,15 @@ export default function ReviewForm() {
               disabled={loading}
               className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 smooth-transition"
             >
-              {loading 
-                ? (existingReview ? "Updating..." : "Submitting...") 
-                : (existingReview ? "Update Review" : "Submit Review")
-              }
+              {loading
+                ? existingReview
+                  ? "Updating..."
+                  : "Submitting..."
+                : existingReview
+                ? "Update Review"
+                : "Submit Review"}
             </button>
-            
+
             {existingReview && isEditing && (
               <button
                 type="button"

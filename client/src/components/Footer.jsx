@@ -9,20 +9,20 @@ export default function Footer() {
 
   const handleSubscribe = (e) => {
     e.preventDefault();
-    
+
     if (!email) {
       customToast.error("Please enter your email address");
       return;
     }
-    
+
     if (!email.includes("@") || !email.includes(".")) {
       customToast.error("Please enter a valid email address");
       return;
     }
-    
+
     // Show success toast
     customToast.success("You are successfully subscribed!");
-    
+
     // Reset the email input
     setEmail("");
   };
@@ -187,7 +187,7 @@ export default function Footer() {
                   onChange={(e) => setEmail(e.target.value)}
                   onKeyPress={(e) => e.key === "Enter" && handleSubscribe(e)}
                 />
-                <button 
+                <button
                   className="bg-primary hover:bg-primary-dark w-full sm:w-24 h-10 text-white rounded-lg transition-colors duration-200 font-medium"
                   onClick={handleSubscribe}
                 >

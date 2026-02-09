@@ -50,7 +50,7 @@ const TestimonialCard = ({ testimonial }) => {
   };
 
   return (
-    <div className="w-full h-80 flex flex-col items-start border border-gray-200/50 dark:border-gray-700/50 p-6 rounded-xl bg-white dark:bg-gray-800/80 backdrop-blur-sm shadow-lg hover:shadow-xl dark:shadow-gray-900/20 transition-all duration-300 hover:-translate-y-1 group mx-auto max-w-sm">
+    <div className="w-full h-80 flex flex-col items-start border-2 border-gray-200 dark:border-gray-700/50 p-6 rounded-xl !bg-white dark:!bg-gray-800/80 shadow-lg shadow-gray-300/50 hover:shadow-xl hover:shadow-gray-400/60 dark:shadow-gray-900/20 dark:hover:shadow-gray-900/30 transition-all duration-300 hover:-translate-y-1 group mx-auto max-w-sm">
       <div className="relative">
         <svg
           width="44"
@@ -86,10 +86,10 @@ const TestimonialCard = ({ testimonial }) => {
             {user_name.charAt(0).toUpperCase()}
           </div>
           <div className="flex-1 min-w-0">
-            <h2 className="text-base text-gray-900 dark:text-gray-100 font-medium smooth-transition group-hover:text-blue-600 dark:group-hover:text-blue-400 truncate">
+            <h2 className="text-base text-gray-900 dark:text-gray-100 font-semibold smooth-transition group-hover:text-blue-600 dark:group-hover:text-blue-400 truncate">
               {user_name}
             </h2>
-            <p className="text-xs text-gray-600 dark:text-gray-400 smooth-transition opacity-75 group-hover:opacity-100">
+            <p className="text-xs text-gray-600 dark:text-gray-400 smooth-transition">
               {formatDate(created_at)}
             </p>
           </div>
@@ -197,8 +197,8 @@ export default function Testimonial({ showWriteReviewButton = true }) {
       </div>
       
       {displayedTestimonials.length === 0 ? (
-        <div className="mt-16 p-8 bg-gray-50 dark:bg-gray-800/50 rounded-xl border border-gray-200 dark:border-gray-700 max-w-md mx-auto">
-          <p className="text-secondary-custom">
+        <div className="mt-16 p-8 bg-gray-50 dark:bg-gray-800/50 rounded-xl border border-gray-300 dark:border-gray-700 max-w-md mx-auto">
+          <p className="text-gray-700 dark:text-secondary-custom">
             No testimonials yet. Be the first to share your experience!
           </p>
         </div>
