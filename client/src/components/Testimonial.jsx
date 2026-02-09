@@ -186,12 +186,12 @@ export default function Testimonial({ showWriteReviewButton = true }) {
   }
 
   return (
-    <div className="text-center mt-32 mb-24 px-4">
-      <div className="max-w-3xl mx-auto mb-16">
-        <h1 className="text-3xl md:text-4xl font-bold text-primary-custom smooth-transition mb-4">
+    <div className="text-center mt-16 sm:mt-24 md:mt-32 mb-12 sm:mb-16 md:mb-24 px-4">
+      <div className="max-w-3xl mx-auto mb-8 sm:mb-12 md:mb-16">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary-custom smooth-transition mb-2 sm:mb-4">
           What Our Users Say
         </h1>
-        <p className="text-sm md:text-base text-secondary-custom smooth-transition opacity-80">
+        <p className="text-xs sm:text-sm md:text-base text-secondary-custom smooth-transition opacity-80">
           Real reviews from our amazing community members
         </p>
       </div>
@@ -216,7 +216,7 @@ export default function Testimonial({ showWriteReviewButton = true }) {
         </div>
       )}
       
-      <div className="mt-12 flex flex-col sm:flex-row gap-4 justify-center items-center">
+      <div className="mt-8 sm:mt-10 md:mt-12 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center px-4">
         {testimonials.length > getTestimonialCount() && (
           <button
             onClick={handleShowMore}

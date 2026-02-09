@@ -17,9 +17,9 @@ const Layout = () => {
   return user ? (
     <>
       <Navbar />
-      <div className="flex items-start justify-start h-screen bg-primary-custom text-primary-custom smooth-transition pt-20">
+      <div className="flex items-start justify-start h-screen bg-primary-custom text-primary-custom smooth-transition pt-16 sm:pt-20">
         <div className="w-full flex">
-          <div className="sm:hidden absolute top-24 right-4 z-40">
+          <div className="sm:hidden fixed top-20 right-4 z-40">
             {sidebar ? (
               <X
                 onClick={() => setSidebar(false)}

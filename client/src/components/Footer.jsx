@@ -28,25 +28,25 @@ export default function Footer() {
   };
 
   return (
-    <footer className="px-6 md:px-16 lg:px-24 xl:px-32 pt-16 pb-8 w-full text-secondary-custom bg-primary-custom smooth-transition border-t border-custom">
-      <div className="flex flex-col md:flex-row justify-between w-full gap-10 border-b border-custom pb-8">
+    <footer className="px-4 sm:px-6 md:px-12 lg:px-16 xl:px-24 2xl:px-32 pt-12 sm:pt-16 pb-6 sm:pb-8 w-full text-secondary-custom bg-primary-custom smooth-transition border-t border-custom">
+      <div className="flex flex-col md:flex-row justify-between w-full gap-8 sm:gap-10 border-b border-custom pb-6 sm:pb-8">
         <div className="md:max-w-96">
           <img
-            className="w-32 sm:w-44 cursor-pointer"
+            className="w-28 sm:w-32 md:w-44 cursor-pointer"
             src={assets.logo}
             alt="QuickAI Logo"
             onClick={() => navigate("/")}
           />
-          <p className="mt-6 text-sm text-secondary-custom">
+          <p className="mt-4 sm:mt-6 text-xs sm:text-sm text-secondary-custom">
             Elevate your content creation with our premium AI tools. Write
             articles, generate images, remove backgrounds, and streamline your
             workflow with the power of artificial intelligence.
           </p>
-          <p className="mt-4 text-xs text-secondary-custom">
+          <p className="mt-3 sm:mt-4 text-xs text-secondary-custom">
             Trusted by thousands worldwide for professional content creation.
           </p>
         </div>
-        <div className="flex-1 flex flex-col sm:flex-row items-start md:justify-end gap-10 sm:gap-20">
+        <div className="flex-1 flex flex-col sm:flex-row items-start md:justify-end gap-8 sm:gap-12 md:gap-16 lg:gap-20 mt-6 md:mt-0">
           <div>
             <h2 className="font-semibold mb-5 text-primary-custom">AI Tools</h2>
             <ul className="text-sm space-y-3">
@@ -178,9 +178,9 @@ export default function Footer() {
                 Get the latest updates on new AI tools and features delivered to
                 your inbox.
               </p>
-              <div className="flex flex-col sm:flex-row items-center gap-2 pt-4">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 pt-4 w-full sm:w-auto">
                 <input
-                  className="border border-custom placeholder-secondary-custom focus:ring-2 ring-primary focus:border-primary outline-none w-full max-w-64 h-10 rounded-lg px-3 bg-primary-custom text-primary-custom smooth-transition"
+                  className="border border-custom placeholder-secondary-custom focus:ring-2 ring-primary focus:border-primary outline-none w-full sm:max-w-64 h-10 rounded-lg px-3 bg-primary-custom text-primary-custom smooth-transition text-sm"
                   type="email"
                   placeholder="Enter your email"
                   value={email}
@@ -188,7 +188,7 @@ export default function Footer() {
                   onKeyPress={(e) => e.key === "Enter" && handleSubscribe(e)}
                 />
                 <button
-                  className="bg-primary hover:bg-primary-dark w-full sm:w-24 h-10 text-white rounded-lg transition-colors duration-200 font-medium"
+                  className="bg-primary hover:bg-primary-dark w-full sm:w-auto sm:min-w-24 h-10 text-white rounded-lg transition-colors duration-200 font-medium text-sm px-4 sm:px-6"
                   onClick={handleSubscribe}
                 >
                   Subscribe

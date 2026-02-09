@@ -191,11 +191,11 @@ export default function ReviewForm() {
 
   if (!isSignedIn) {
     return (
-      <div className="max-w-2xl mx-auto p-6 bg-card-custom rounded-lg border border-custom smooth-transition">
-        <h2 className="text-2xl font-bold text-primary-custom mb-4 smooth-transition">
+      <div className="w-full max-w-2xl mx-auto p-4 sm:p-6 bg-card-custom rounded-lg border border-custom smooth-transition">
+        <h2 className="text-xl sm:text-2xl font-bold text-primary-custom mb-4 smooth-transition">
           Share Your Experience
         </h2>
-        <p className="text-secondary-custom smooth-transition">
+        <p className="text-sm sm:text-base text-secondary-custom smooth-transition">
           Please sign in to write a review and share your experience with our
           platform.
         </p>
@@ -205,7 +205,7 @@ export default function ReviewForm() {
 
   if (fetchingReview) {
     return (
-      <div className="max-w-2xl mx-auto p-6 bg-card-custom rounded-lg border border-custom smooth-transition">
+      <div className="w-full max-w-2xl mx-auto p-4 sm:p-6 bg-card-custom rounded-lg border border-custom smooth-transition">
         <div className="flex justify-center">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
         </div>
@@ -214,8 +214,8 @@ export default function ReviewForm() {
   }
 
   return (
-    <div className="max-w-2xl mx-auto p-6 bg-card-custom rounded-lg border border-custom smooth-transition">
-      <h2 className="text-2xl font-bold text-primary-custom mb-4 smooth-transition">
+    <div className="w-full max-w-2xl mx-auto p-4 sm:p-6 bg-card-custom rounded-lg border border-custom smooth-transition">
+      <h2 className="text-xl sm:text-2xl font-bold text-primary-custom mb-4 smooth-transition">
         {existingReview ? "Your Review" : "Share Your Experience"}
       </h2>
 

@@ -50,11 +50,11 @@ const RemoveBackground = () => {
   };
 
   return (
-    <div className="h-full overflow-y-scroll p-6 flex items-start flex-wrap gap-4 text-slate-700">
+    <div className="h-full overflow-y-scroll p-4 sm:p-6 flex flex-col lg:flex-row items-start gap-4 sm:gap-6 text-slate-700">
       {/*left side*/}
       <form
         onSubmit={onSubmitHandler}
-        className="w-full max-w-lg p-4 bg-white rounded-lg border border-gray-200"
+        className="w-full lg:max-w-lg p-4 sm:p-6 bg-white rounded-lg border border-gray-200"
       >
         <div className="flex items-center gap-3">
           <Sparkles className="w-6 text-[#FF4938]" />
@@ -85,7 +85,7 @@ const RemoveBackground = () => {
       </form>
 
       {/*right side*/}
-      <div className="w-full max-w-lg p-4 bg-white rounded-lg flex flex-col border border-gray-200 min-h-96 ">
+      <div className="w-full lg:max-w-lg p-4 sm:p-6 bg-white rounded-lg flex flex-col border border-gray-200 min-h-96">
         <div className="flex items-center gap-3">
           <Eraser className="w-5 h-5 text-[#FF4938]" />
           <h1 className="text-xl font-semibold">Processed Image</h1>
